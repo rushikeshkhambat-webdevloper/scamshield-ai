@@ -14,7 +14,7 @@ import VerdictCard from "../components/VerdictCard";
 import useSpeech from "../hooks/useSpeech";
 
 export default function Check() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const { user } = useAuth();
 
   const [text, setText] = useState("");
@@ -36,7 +36,11 @@ export default function Check() {
     setResult(null);
 
     try {
-      const res = await analyzeMessage(content);
+      // Map UI language to AI language
+      const langMap = { en: "English", hi: "Hindi", mr: "Marathi" };
+      const aiLang = langMap[lang] || "English";
+
+      const res = await analyzeMessage(content, aiLang);
       setResult(res);
 
       try {
@@ -133,7 +137,7 @@ export default function Check() {
             className="justify-center w-full sm:w-auto inline-flex items-center gap-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-200 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
           >
             {loading && <Loader2 size={16} className="animate-spin" />}
-            {loading ? t.check.analyzing : t.check.analyze}
+            {loading ? t.check.analyzing : `${t.check.analyze} (${lang.toUpperCase()})`}
           </button>
         </div>
       </div>

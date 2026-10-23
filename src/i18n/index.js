@@ -1,13 +1,11 @@
-import en from "./en";
-import mr from "./mr";
+import { en } from "./en";
+import { mr } from "./mr";
+import { hi } from "./hi";
 
-export const dicts = { en, mr };
+export const dicts = { en, mr, hi };
 
 export function getSavedLang() {
-  try {
-    const saved = localStorage.getItem("scamshield_lang");
-    return saved === "mr" ? "mr" : "en";
-  } catch {
-    return "en";
-  }
+  const saved = localStorage.getItem("scamshield_lang");
+  if (saved === "mr" || saved === "hi") return saved;
+  return "en";
 }

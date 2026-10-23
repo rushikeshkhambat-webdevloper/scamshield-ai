@@ -1,4 +1,4 @@
-const en = {
+ export const en = {
   appName: "ScamShield",
   tagline: "Check suspicious messages before you act.",
   nav: {
@@ -52,4 +52,3 @@ const en = {
   },
 };
 
-export default en;

@@ -1,4 +1,4 @@
-const mr = {
+ export const mr = {
   appName: "स्कॅमशील्ड",
   tagline: "कृती करण्यापूर्वी संशयास्पद संदेश तपासा.",
   nav: {
@@ -52,4 +52,3 @@ const mr = {
   },
 };
 
-export default mr;
